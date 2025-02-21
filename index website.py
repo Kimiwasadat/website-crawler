@@ -2,9 +2,9 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
-from datetime import time
+import time
 
-global instance 
+ 
 instance = 0
 
 def load_input_csv(filename):
@@ -74,6 +74,7 @@ def get_page_title(soup):
     return ""
 
 def crawl_website(url, product_keyword, visited=None, max_depth=2, depth=0):
+    global instance
     """
     Recursively crawl pages on the same domain starting from 'url'.
     - product_keyword: The text (e.g., "lecturns") to search for.
