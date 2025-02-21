@@ -5,7 +5,7 @@ from urllib.parse import urljoin, urlparse
 import time
 
  
-instance = 0
+
 
 def load_input_csv(filename):
     """
@@ -74,7 +74,7 @@ def get_page_title(soup):
     return ""
 
 def crawl_website(url, product_keyword, visited=None, max_depth=2, depth=0):
-    global instance
+    
     """
     Recursively crawl pages on the same domain starting from 'url'.
     - product_keyword: The text (e.g., "lecturns") to search for.
@@ -100,8 +100,8 @@ def crawl_website(url, product_keyword, visited=None, max_depth=2, depth=0):
     if found:
         title = get_page_title(soup)
         found_pages.append({"url": url, "title": title})
-        instance += 1
-        print(f"found website {url}------------------ instance:{instance}")
+        
+        print(f"\nfound website {url}   ------------------")
 
     # If we got a valid soup, continue crawling internal links
     if soup:
@@ -134,8 +134,8 @@ if __name__ == "__main__":
     if all_found_pages:
         save_to_csv(all_found_pages, output_csv)
         print(f"\nSaved pages containing '{product_keyword}' to '{output_csv}'.")
-        print(instance)
+        
     else:
         print(f"\nNo pages found containing '{product_keyword}'.")
         end_time = time.time()
-        print(instance)
+        
