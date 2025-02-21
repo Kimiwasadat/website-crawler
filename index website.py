@@ -2,6 +2,9 @@ import csv
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse
+from datetime import time
+
+global instance 
 instance = 0
 
 def load_input_csv(filename):
@@ -96,6 +99,7 @@ def crawl_website(url, product_keyword, visited=None, max_depth=2, depth=0):
     if found:
         title = get_page_title(soup)
         found_pages.append({"url": url, "title": title})
+        instance += 1
         print(f"found website {url}------------------ instance:{instance}")
 
     # If we got a valid soup, continue crawling internal links
@@ -111,7 +115,7 @@ def crawl_website(url, product_keyword, visited=None, max_depth=2, depth=0):
 
 if __name__ == "__main__":
     # Your product keyword
-
+    start_time = time.time()
     product_keyword = "lectern"
 
     # CSV file with a header row and column named 'url'
@@ -132,4 +136,5 @@ if __name__ == "__main__":
         print(instance)
     else:
         print(f"\nNo pages found containing '{product_keyword}'.")
+        end_time = time.time()
         print(instance)
